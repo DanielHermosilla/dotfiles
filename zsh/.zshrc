@@ -1,4 +1,7 @@
 export PATH="/opt/homebrew/bin:$PATH"
+# En tu ~/.zshrc (el de dotfiles)
+export PATH="$HOME/Library/Python/3.13/bin:$HOME/.local/bin:/opt/homebrew/bin:$PATH"
+
 
 # ── P10k instant prompt ───────────────────────────────────────────────────────
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
