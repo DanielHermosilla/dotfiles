@@ -1,28 +1,18 @@
-
 export PATH="/opt/homebrew/bin:$PATH"
 
-# -----------------------------------------------------------------------------
-# Powerlevel10k instant prompt (debe ir arriba del todo)
-# -----------------------------------------------------------------------------
+# ── P10k instant prompt ───────────────────────────────────────────────────────
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# -----------------------------------------------------------------------------
-# Path to oh-my-zsh
-# -----------------------------------------------------------------------------
+# ── oh-my-zsh ─────────────────────────────────────────────────────────────────
 export ZSH="$HOME/.oh-my-zsh"
+export ZSH_CUSTOM="${ZSH_CUSTOM:-$ZSH/custom}"
 
-# -----------------------------------------------------------------------------
-# Theme (Powerlevel10k recomendado, puedes cambiar a "refined" si prefieres)
-# -----------------------------------------------------------------------------
-ZSH_THEME="powerlevel10k/powerlevel10k"
+# NO usar ZSH_THEME aquí
+ZSH_THEME=""
 
-# -----------------------------------------------------------------------------
-# Plugins
-# -----------------------------------------------------------------------------
-# Los plugins instalados con brew se symlinkean a $ZSH_CUSTOM/plugins
-# git, web-search y z ya vienen en oh-my-zsh
+# Plugins (ya funcionan con tus wrappers)
 plugins=(
   git
   zsh-autosuggestions
@@ -32,32 +22,22 @@ plugins=(
   zsh-navigation-tools
 )
 
-# -----------------------------------------------------------------------------
-# Load oh-my-zsh
-# -----------------------------------------------------------------------------
-source $ZSH/oh-my-zsh.sh
+source "$ZSH/oh-my-zsh.sh"
 
-# -----------------------------------------------------------------------------
-# Opcionales: activa estas líneas si prefieres sourcear desde Homebrew directamente
-# (por ejemplo si no creaste symlinks en $ZSH_CUSTOM/plugins)
-# -----------------------------------------------------------------------------
-# if [ -d /opt/homebrew ]; then
-#   BREW_PREFIX=/opt/homebrew
-# else
-#   BREW_PREFIX=/usr/local
-# fi
-# source $BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# source $BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Cargar Powerlevel10k directamente desde Homebrew
+if [[ -d /opt/homebrew ]]; then BREW_PREFIX=/opt/homebrew; else BREW_PREFIX=/usr/local; fi
+if [[ -r "$BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme" ]]; then
+  source "$BREW_PREFIX/share/powerlevel10k/powerlevel10k.zsh-theme"
+fi
 
-# -----------------------------------------------------------------------------
-# Historial y otras opciones útiles
-# -----------------------------------------------------------------------------
+# ── Historial / misceláneos ──────────────────────────────────────────────────
 HIST_STAMPS="yyyy-mm-dd"
-# ENABLE_CORRECTION="true"
-# COMPLETION_WAITING_DOTS="true"
 
-# -----------------------------------------------------------------------------
-# Powerlevel10k configuration (si existe ~/.p10k.zsh)
-# -----------------------------------------------------------------------------
-[[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
+# ── Config de P10k (si existe) / wizard si falta ─────────────────────────────
+if [[ -f ~/.p10k.zsh ]]; then
+  source ~/.p10k.zsh
+else
+  print -P "%F{39}Powerlevel10k: iniciando configuración…%f"
+  (( $+functions[p10k] )) && p10k configure
+fi
 

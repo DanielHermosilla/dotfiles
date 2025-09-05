@@ -12,15 +12,15 @@ end
 -- ---------------------------------------------------------------------
 
 -- Fondo transparente
-config.window_background_opacity = 0.9 -- 0 = transparente, 1 = opaco
+config.window_background_opacity = 0.3 -- 0 = transparente, 1 = opaco
 config.macos_window_background_blur = 20 -- difuminado del fondo en macOS
 
 -- Fuente y tamaño
 config.font = wezterm.font_with_fallback({
-	"JetBrains Mono Nerd Font", -- instala con brew: brew install --cask font-jetbrains-mono-nerd-font
-	"Fira Code",
+	--"JetBrains Mono Nerd Font", -- instala con brew: brew install --cask font-jetbrains-mono-nerd-font
+	--"Fira Code",
 })
-config.font_size = 14.0
+config.font_size = 16.0
 
 -- ---------------------------------------------------------------------
 -- Keybindings
