@@ -1,0 +1,4 @@
+styler::tidyverse_style(
+  indent_by = 4,
+  strict = FALSE
+)

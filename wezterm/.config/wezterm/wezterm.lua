@@ -53,6 +53,9 @@ config.window_padding = {
 	bottom = 5,
 }
 
+-- Evitar que la ventana se achique al cambiar tab
+config.adjust_window_size_when_changing_font_size = false
+
 -- Keys
 config.keys = {
 	{ -- New tab

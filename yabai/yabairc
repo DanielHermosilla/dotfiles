@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+yabai -m config layout bsp
+yabai -m config auto_balance on
+yabai -m config window_gap 8

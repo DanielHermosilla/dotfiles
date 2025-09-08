@@ -1,4 +1,6 @@
 export PATH="/opt/homebrew/bin:$PATH"
+export PATH="/Library/TeX/texbin:$PATH"
+
 # En tu ~/.zshrc (el de dotfiles)
 export PATH="$HOME/Library/Python/3.13/bin:$HOME/.local/bin:/opt/homebrew/bin:$PATH"
 
@@ -43,4 +45,6 @@ else
   print -P "%F{39}Powerlevel10k: iniciando configuración…%f"
   (( $+functions[p10k] )) && p10k configure
 fi
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
