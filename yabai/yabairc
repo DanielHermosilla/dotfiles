@@ -2,3 +2,14 @@
 yabai -m config layout bsp
 yabai -m config auto_balance on
 yabai -m config window_gap 8
+yabai -m config right_padding 8
+yabai -m config left_padding 8
+yabai -m config top_padding 5
+
+# Only force Claude's normal windows to tile. Its auxiliary windows must
+# not reserve space in the BSP tree.
+yabai -m rule --add label="claude-manage" app="^Claude$" \
+  role="^AXWindow$" subrole="^AXStandardWindow$" manage=on
+
+# Remove the old asynchronous float/unfloat workaround when reloading.
+yabai -m signal --remove claude-auto-tile 2>/dev/null || :

@@ -48,3 +48,10 @@ fi
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+export PATH="$(npm bin -g):$PATH"
+export CLAUDE_CODE_MAX_OUTPUT_TOKENS=100000
+
+export PATH="/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH"
+
+[[ "$TERM_PROGRAM" == "kiro" ]] && . "$(kiro --locate-shell-integration-path zsh)"

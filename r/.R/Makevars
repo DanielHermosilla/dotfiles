@@ -1,27 +1,14 @@
-# ==== Usar clang/clang++ de Homebrew (no el de Apple) ====
-CC=/opt/homebrew/opt/llvm/bin/clang
-CXX=/opt/homebrew/opt/llvm/bin/clang++
-CXX11=/opt/homebrew/opt/llvm/bin/clang++
-CXX14=/opt/homebrew/opt/llvm/bin/clang++
-CXX17=/opt/homebrew/opt/llvm/bin/clang++
+# ===== Toolchain (Apple) =====
+CC=/usr/bin/clang
+CXX=/usr/bin/clang++
+CXX11=/usr/bin/clang++
+CXX14=/usr/bin/clang++
+CXX17=/usr/bin/clang++
 
-# (Si algún paquete requiere Fortran)
 F77=/opt/homebrew/bin/gfortran
 FC=/opt/homebrew/bin/gfortran
 
-# ==== OpenMP flags para C/C++/Fortran ====
-SHLIB_OPENMP_CFLAGS   = -fopenmp
-SHLIB_OPENMP_CXXFLAGS = -fopenmp
-SHLIB_OPENMP_FCFLAGS  = -fopenmp
-
-# ==== Incluir headers y libs de llvm/libomp ====
-CPPFLAGS += -I/opt/homebrew/opt/llvm/include -I/opt/homebrew/opt/libomp/include
-LDFLAGS  += -L/opt/homebrew/opt/llvm/lib    -L/opt/homebrew/opt/libomp/lib
-
-# Enlazar runtime y fijar rpath para que encuentre libomp en tiempo de ejecución
-LDFLAGS  += -Wl,-rpath,/opt/homebrew/opt/libomp/lib -lomp
-
-# (Opcional) optimizaciones suaves para ARM
-CFLAGS   += -O3
-CXXFLAGS += -O3
-
+# ===== Optimizaciones =====
+CFLAGS   += -O3 -fPIC
+CXXFLAGS += -O3 -std=gnu++17 -stdlib=libc++
+LDFLAGS  += -stdlib=libc++
